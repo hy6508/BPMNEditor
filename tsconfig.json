@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "outDir": "./lib/",
+    "outDir": "./dist/",
     "module": "commonjs",
     "target": "es5",
     "lib": [
-      "dom",
-      "es5",
-      "scripthost",
-      "es2015.iterable"
+      "es6",
+      "dom"
     ],
     "sourceMap": true,
     "allowJs": true,
@@ -18,7 +16,7 @@
     "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "compileOnSave": true,
   "include": [

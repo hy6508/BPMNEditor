@@ -8,6 +8,9 @@ import livereload from 'rollup-plugin-livereload';
 import uglify from 'rollup-plugin-uglify';
 import filesize from 'rollup-plugin-filesize';
 import less from 'rollup-plugin-less';
+import globals from 'rollup-plugin-node-globals';
+import builtins from 'rollup-plugin-node-builtins';
+import path from 'path';
 
 const dev = 'development';
 const prod = 'production';
@@ -26,11 +29,16 @@ const plugins = [
     // browser: true,
     main: true,
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'],
-    // preferBuiltins: true,
+    preferBuiltins: true,
   }),
+  globals(),
+  builtins(),
   commonjs({
     // All of our own sources will be ES6 modules, so only node_modules need to be resolved with cjs
-    include: 'node_modules/**',
+    include: [
+      'node_modules/**',
+      'src/rappid/**'
+    ],
     namedExports: {
       // The commonjs plugin can't figure out the exports of some modules, so if rollup gives warnings like:
       // ⚠️   'render' is not exported by 'node_modules/react-dom/index.js'
@@ -85,15 +93,21 @@ export default {
     globals: {
       jquery: '$',
       lodash: '_',
+      backbone: 'Backbone',
       'react': 'React',
       'react-dom': 'ReactDOM',
+      'ws': 'WebSocket',
+      // 'joint': 'joint',
     }
   },
   external: [
     'jquery',
     'lodash',
+    'backbone',
     'react',
     'react-dom',
+    'ws',
+    // path.resolve('./src/rappid/rappid.min.js')
   ]
 };
 
