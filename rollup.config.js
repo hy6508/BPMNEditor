@@ -97,7 +97,7 @@ export default {
       'react': 'React',
       'react-dom': 'ReactDOM',
       'ws': 'WebSocket',
-      // 'joint': 'joint',
+      'joint': 'joint',
     }
   },
   external: [
@@ -107,7 +107,7 @@ export default {
     'react',
     'react-dom',
     'ws',
-    // path.resolve('./src/rappid/rappid.min.js')
+    path.resolve('./src/rappid/rappid.min.js')
   ]
 };
 
