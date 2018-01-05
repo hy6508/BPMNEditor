@@ -11,8 +11,8 @@ export interface MainState {
 export default class Main extends React.Component<MainProps, MainState> {
 
   // Conatiner
-  paperContainer: HTMLDivElement
-  stencilContainer: HTMLDivElement
+  paperContainer: HTMLDivElement;
+  stencilContainer: HTMLDivElement;
 
   // rappid things
   graph: joint.dia.Graph;
@@ -78,8 +78,8 @@ export default class Main extends React.Component<MainProps, MainState> {
       <div className="BPMNEditor" >
         <div className="bpmn-app">
           <div className="app-body">
-            <div className="stencil-container" ref={(node) => { this.stencilContainer = node }}></div>
-            <div className="paper-container" ref={(node) => { this.paperContainer = node }} >
+            <div className="stencil-container" ref={(node: HTMLDivElement) => { this.stencilContainer = node }}></div>
+            <div className="paper-container" ref={(node: HTMLDivElement) => { this.paperContainer = node }} >
             </div>
           </div>
         </div>
