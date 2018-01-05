@@ -25,7 +25,7 @@ const plugins = [
     // module: false,
     // browser: true,
     main: true,
-    extensions: ['.js', '.jsx', '.ts', '.tsx','.less','.css'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css'],
     // preferBuiltins: true,
   }),
   commonjs({
@@ -46,8 +46,7 @@ const plugins = [
     },
   }),
   typescriptPlugin({
-    typescript,
-    importHelpers: true,
+    typescript
   }),
   less({
     output: 'lib/BPMNEditor.css'
@@ -79,18 +78,23 @@ export default {
   plugins,
   input: 'src/index.tsx',
   output: {
+    name: 'BPMNEditor',
     format: 'iife',
     file: 'lib/BPMNEditor.js',
-    sourcemap: sourceMap
+    sourcemap: sourceMap,
+    globals: {
+      jquery: '$',
+      lodash: '_',
+      'react': 'React',
+      'react-dom': 'ReactDOM',
+    }
   },
   external: [
+    'jquery',
     'lodash',
-    'jquery'
-  ],
-  globals: {
-    jquery: '$',
-    lodash: '_',
-  }
+    'react',
+    'react-dom',
+  ]
 };
 
 function parseNodeEnv(nodeEnv) {

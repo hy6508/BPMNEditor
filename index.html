@@ -11,11 +11,16 @@
   <script src="node_modules/lodash/lodash.min.js"></script>
   <script src="node_modules/react/umd/react.production.min.js"></script>
   <script src="node_modules/react-dom/umd/react-dom.production.min.js"></script>
+  <!-- <script src="node_modules/react/umd/react.development.js"></script> -->
+  <!-- <script src="node_modules/react-dom/umd/react-dom.development.js"></script> -->
 </head>
 
 <body>
-  BPMNEditor
+  <div id="root"></div>
   <script src="./lib/BPMNEditor.js"></script>
+  <script>
+    BPMNEditor()
+  </script>
 </body>
 
 </html>
