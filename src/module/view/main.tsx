@@ -13,7 +13,7 @@ export default class Main extends React.Component<MainProps, MainState> {
   // Conatiner
   paperContainer: HTMLDivElement
   stencilContainer: HTMLDivElement
-
+  navigatorContainer: HTMLDivElement
   // rappid things
   graph: joint.dia.Graph;
   commandManager: joint.dia.CommandManager;
@@ -66,24 +66,52 @@ export default class Main extends React.Component<MainProps, MainState> {
     super(props);
 
     this.state = {
+      showInspector: false
     }
   }
+  hideInspector() {
+    this.setState({
+      showInspector: false
+    })
 
+  }
+  add() {
+    this.setState({
+      showInspector: true
+    })
+  }
   componentDidMount() {
     this.initializePaper();
   }
+  renderInspectorContainer() {
+    if (this.state.showInspector) {
+      return (
+        <div className="inspector-container" ref={(node) => { this.inspectorContainer = node }} >
+          <button onClick={this.hideInspector.bind(this)} >收起</button>
+        </div>
+      )
+    } else {
+      return (
+        <div className="inspector-container hide-inspector"></div>
+      )
+    }
 
+  }
   render() {
     return (
       <div className="BPMNEditor" >
         <div className="bpmn-app">
           <div className="app-body">
-            <div className="stencil-container" ref={(node) => { this.stencilContainer = node }}></div>
+            <div className="stencil-container" ref={(node) => { this.stencilContainer = node }}>
+              <div onClick={this.add.bind(this)}><button>测试点击</button></div>
+            </div>
             <div className="paper-container" ref={(node) => { this.paperContainer = node }} >
             </div>
+            {this.renderInspectorContainer()}
+            <div className="navigator-container" ref={(node) => { this.navigatorContainer = node }} ></div>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
