@@ -7,10 +7,11 @@ import serve from 'rollup-plugin-serve';
 import livereload from 'rollup-plugin-livereload';
 import uglify from 'rollup-plugin-uglify';
 import filesize from 'rollup-plugin-filesize';
-import less from 'rollup-plugin-less';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
 import path from 'path';
+import postcss from 'rollup-plugin-postcss'
+import cssnano from 'cssnano'
 
 const dev = 'development';
 const prod = 'production';
@@ -21,6 +22,13 @@ const plugins = [
   replace({
     // The react sources include a reference to process.env.NODE_ENV so we need to replace it here with the actual value
     'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+  }),
+  postcss({
+    plugins: [
+      cssnano()
+    ],
+    extensions: ['.less'],
+    extract: true
   }),
   // // nodeResolve makes rollup look for dependencies in the node_modules directory
   nodeResolve({
@@ -55,9 +63,6 @@ const plugins = [
   }),
   typescriptPlugin({
     typescript
-  }),
-  less({
-    output: 'lib/BPMNEditor.css'
   }),
   filesize({
     render: function (options, size) {

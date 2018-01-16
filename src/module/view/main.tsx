@@ -6,6 +6,7 @@ export interface MainProps {
 }
 
 export interface MainState {
+  showInspector: any
 }
 
 export default class Main extends React.Component<MainProps, MainState> {
@@ -14,6 +15,9 @@ export default class Main extends React.Component<MainProps, MainState> {
   paperContainer: HTMLDivElement
   stencilContainer: HTMLDivElement
   navigatorContainer: HTMLDivElement
+  toolbarContainer: HTMLDivElement
+  inspectorContainer: HTMLDivElement
+
   // rappid things
   graph: joint.dia.Graph;
   commandManager: joint.dia.CommandManager;
@@ -86,7 +90,7 @@ export default class Main extends React.Component<MainProps, MainState> {
   renderInspectorContainer() {
     if (this.state.showInspector) {
       return (
-        <div className="inspector-container" ref={(node) => { this.inspectorContainer = node }} >
+        <div className="inspector-container" ref={(node: HTMLDivElement) => { this.inspectorContainer = node }} >
           <button onClick={this.hideInspector.bind(this)} >收起</button>
         </div>
       )
@@ -102,13 +106,15 @@ export default class Main extends React.Component<MainProps, MainState> {
       <div className="BPMNEditor" >
         <div className="bpmn-app">
           <div className="app-body">
-            <div className="stencil-container" ref={(node) => { this.stencilContainer = node }}>
+            <div className="stencil-container" ref={(node: HTMLDivElement) => { this.stencilContainer = node }}>
               <div onClick={this.add.bind(this)}><button>测试点击</button></div>
             </div>
-            <div className="paper-container" ref={(node) => { this.paperContainer = node }} >
+            <div className="toolbar-container" ref={(node: HTMLDivElement) => { this.toolbarContainer = node }}></div>
+            <div className="paper-container" ref={(node: HTMLDivElement) => { this.paperContainer = node }} >
+
             </div>
             {this.renderInspectorContainer()}
-            <div className="navigator-container" ref={(node) => { this.navigatorContainer = node }} ></div>
+            <div className="navigator-container" ref={(node: HTMLDivElement) => { this.navigatorContainer = node }} ></div>
           </div>
         </div>
       </div >
