@@ -1,7 +1,9 @@
 // @import (inline) './rappid.min.css';
+*{margin: 0;padding: 0}
 .BPMNEditor {
     width: 100%;
     height: 100%;
+    overflow: hidden;
     .bpmn-app {
         position: relative;
         width: 100%;
@@ -19,6 +21,44 @@
                 width: 100%;
                 overflow: hidden;
                 box-sizing: border-box;
+            }
+
+            .stencil-container{
+                position: fixed;
+                left: 10px;
+                top: 10px;
+                z-index: 11;
+                width: 80px;
+                bottom:25px;
+                background: #fff;
+                border: 1px solid #ddd;
+            }
+            .inspector-container{
+                position: absolute;
+                right: 10px;
+                width: 200px;
+                top: 10px;
+                z-index: 11;
+                bottom:150px;
+                background: #fff;
+                border: 1px solid #ddd;
+                transition:all 1s;
+                -moz-transition:all 1s; /* Firefox 4 */
+                -webkit-transition:all 1s; /* Safari and Chrome */
+                -o-transition:all 1s; /* Opera */
+            }
+            .hide-inspector{ 
+                right: -210px;  
+            }
+            .navigator-container{
+                position: absolute;
+                right: 10px;
+                width: 200px;
+                height: 125px;
+                bottom:25px;
+                background:#fff;
+                z-index: 11;
+                // border: 1px solid #ddd;
             }
         }
     }
